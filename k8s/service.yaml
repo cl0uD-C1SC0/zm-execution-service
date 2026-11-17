@@ -1,0 +1,15 @@
+# Dentro do cluster: http://execution-service:8000
+# De fora (na VM):   http://$(minikube ip):30083/docs
+apiVersion: v1
+kind: Service
+metadata:
+  name: execution-service
+  namespace: zm
+spec:
+  type: NodePort
+  selector:
+    app: execution-service
+  ports:
+    - port: 8000
+      targetPort: 8000
+      nodePort: 30083
